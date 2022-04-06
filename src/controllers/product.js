@@ -19,8 +19,8 @@ export const list = async (req, res) => { // get all
     // /product?sortBy=name&order=asc
     const limitNumber = 20
     const limit = req.query.limit ? +req.query.limit : limitNumber;
-    const sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-    const order = req.query.order ? req.query.order : 'desc';
+    // const sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    // const order = req.query.order ? req.query.order : 'desc';
 
     try {
         const products = await Product.find().limit(limit).exec();
