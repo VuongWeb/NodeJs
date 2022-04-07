@@ -3,11 +3,12 @@ import slugify from 'slugify';
 
 
 export const create = async (req, res) => { // create product
-    req.body.slug = slugify(req.body.name);
+    // req.body.slug = slugify(req.body.name);
     try {
         const product = await new Product(req.body).save()
         res.json(product);    
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             message: "Thêm sản phẩm không thành công"
         })
@@ -36,6 +37,7 @@ export const get = async (req, res) => { // get a product
         const products = await Product.findOne({_id: req.params.id }).exec();
         res.json(products);    
     } catch (error) {
+        
         res.status(400).json({
             message: "Thêm sản phẩm không thành công"
         })

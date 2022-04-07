@@ -16,8 +16,8 @@ export const requireSignin = expressJWT({
 });
 
 export const isAuth = (req, res, next) => {
-    // console.log(req.auth)
-    // console.log(req.profile);
+    console.log(req.auth)
+    console.log(req.profile);
     const user = req.profile._id == req.auth._id;
     if(!user){
         return res.status(402).json({

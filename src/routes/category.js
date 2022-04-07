@@ -7,5 +7,5 @@ const router = Router();
 router.get("/categories", checkAuth, list);
 router.post('/category', checkAuth, create);
 router.delete('/category/:id', remove);
-router.get('/category/:slug', checkAuth, read);
+router.get('/category/:slug', read);
 export default router

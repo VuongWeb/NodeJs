@@ -17,7 +17,7 @@ export const create = async (req, res) => { // create product
 
 export const remove = async (req, res) => { // delete cate
     try {
-        const cate = await Cate.findOneAndDelete({_id: req.params.id }).exec();
+        const cate = await Category.findOneAndDelete({_id: req.params.id }).exec();
         res.json(cate);    
     } catch (error) {
         res.status(400).json({
