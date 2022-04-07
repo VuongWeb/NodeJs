@@ -1,6 +1,6 @@
 import Category from '../models/category'
 import slugify from 'slugify';
-import Product from '../models/product';
+
 
 
 export const create = async (req, res) => { // create product
@@ -11,6 +11,17 @@ export const create = async (req, res) => { // create product
     } catch (error) {
         res.status(400).json({
             message: "Thêm danh mục không thành công"
+        })
+    }
+}
+
+export const remove = async (req, res) => { // delete cate
+    try {
+        const cate = await Cate.findOneAndDelete({_id: req.params.id }).exec();
+        res.json(cate);    
+    } catch (error) {
+        res.status(400).json({
+            message: "Xóa danh mục không thành công"
         })
     }
 }
