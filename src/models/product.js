@@ -6,12 +6,12 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    // slug: {
-    //     type: String,
-    //     lowercase: true,
-    //     unique: true,
-    //     index: true
-    // },
+    slug: {
+        type: String,
+        lowercase: true,
+        unique: true,
+        index: true
+    },
     price: {
         type: Number,
         required: true
@@ -19,7 +19,8 @@ const productSchema = mongoose.Schema({
     img: {
         type: String,
         required: true
-    },
+    }
+    ,
     category: {
         type: ObjectId,
         ref: "Category" 
