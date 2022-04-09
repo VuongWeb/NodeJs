@@ -54,6 +54,7 @@ export const remove = async (req, res) => { // delete product
         })
     }
 }
+
 export const update = async (req, res) => { // update product
     const condition = {_id: req.params.id };
     const update = req.body;
