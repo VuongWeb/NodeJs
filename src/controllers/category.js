@@ -1,10 +1,8 @@
 import Category from '../models/category'
-import slugify from 'slugify';
 
 
 
 export const create = async (req, res) => { // create product
-    req.body.slug = slugify(req.body.name);
     try {
         const category = await new Category(req.body).save()
         res.json(category);    
@@ -36,18 +34,15 @@ export const list = async (req, res) => { // get all
         })
     }
 }
-export const read = async (req, res) => { // get all
-    console.log(req.params.slug)
+export const read = async (req, res) => {
+    const condition = {_id: req.params.id};
     try {
-        const category = await Category.findOne({slug: req.params.slug}).exec();
-        const products = await Product.find({Category: category}).populate('category').select('-category').exec()
-        console.log('products', products);
+        const category = await Category.findOne({_id: req.params.id}).exec();
+        const products = await Product.find({category}).select('-category').exec();
         res.json({
             category, products
-        });    
+        });
     } catch (error) {
-        res.status(400).json({
-            message: "Lỗi"
-        })
+        
     }
-  }
+}
