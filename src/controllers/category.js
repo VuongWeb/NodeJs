@@ -1,5 +1,5 @@
 import Category from '../models/category'
-
+import Product from '../models/product';
 
 
 export const create = async (req, res) => { // create product
@@ -43,6 +43,6 @@ export const read = async (req, res) => {
             category, products
         });
     } catch (error) {
-        
+        console.log(error);
     }
 }

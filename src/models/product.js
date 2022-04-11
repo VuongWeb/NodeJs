@@ -1,11 +1,12 @@
-
-import mongoose, { ObjectId }  from "mongoose";
+import mongoose from "mongoose";
+const { ObjectId } = mongoose.Types
 
 const productSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
     },
+    
     price: {
         type: Number,
         required: true
@@ -13,13 +14,13 @@ const productSchema = mongoose.Schema({
     img: {
         type: String,
         required: true
-    }
-    ,
+    },
     category: {
         type: ObjectId,
-        ref: "Category" 
+        ref: "Category"
     }
 }, { timestamps: true} )
 
-export default mongoose.model('Product', productSchema);
 
+
+export default mongoose.model('Product', productSchema);
