@@ -37,9 +37,10 @@ export const list = async (req, res) => { // get all
     }
 }
 export const read = async (req, res) => { // get all
+    console.log(req.params.slug)
     try {
         const category = await Category.findOne({slug: req.params.slug}).exec();
-        const products = await Product.find({category: category}).populate('category').select('-category').exec()
+        const products = await Product.find({Category: category}).populate('category').select('-category').exec()
         console.log('products', products);
         res.json({
             category, products
