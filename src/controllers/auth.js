@@ -26,6 +26,7 @@ export const signup = async (req, res) => {
 export const signin = async (req, res) => {
     const { email, password} = req.body;
     const user = await User.findOne({email}).exec();
+    // console.log('user:',user);
     if(!user){
         return res.status(400).json({
             message: "User khong ton tai"
@@ -42,7 +43,8 @@ export const signin = async (req, res) => {
         user: {
             _id: user._id,
             email: user.email,
-            name: user.name
+            name: user.name,
+            role: user.role
         }
     })
 }

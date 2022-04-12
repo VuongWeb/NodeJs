@@ -1,3 +1,4 @@
+// import res from 'express/lib/response';
 import Product from '../models/product'
 
 
@@ -14,6 +15,25 @@ export const create = async (req, res) => { // create product
     }
 }
 
+export const paginateProducts = async (req,res)=>{
+    const perPage = 4;
+    const page = req.params.page || 1;
+    const Products = Product;
+    try {
+        await Products.find().skip((perPage*page)-perPage).limit(perPage).exec((err,products)=>{
+            Products.countDocuments((err)=>{
+                if(err) return next(err);
+                res.send(products)
+            })
+        })
+    } catch (error) {
+        console.log('err:',error)
+    }
+}
+
+export const searchProducts = (req,res) =>{
+    
+}
 
 export const list = async (req, res) => { // get all
     // /product?limit=4
