@@ -27,15 +27,11 @@ const userSchema = new Schema({
 
 userSchema.methods = {
     authenticate(password){
-        console.log('password in method', password);
-        console.log('this.password == this.encrytPassword(password)', this.password == this.encrytPassword(password))
         return this.password == this.encrytPassword(password);
     },
     encrytPassword(password){ 
-        console.log('password in method', password)
         if(!password) return;
         try {
-            console.log('password da ma hoa', createHmac('sha256', this.salt).update(password).digest('hex'))
             return createHmac('sha256', this.salt).update(password).digest('hex');
         } catch (error) {
             console.log(error);
@@ -44,7 +40,6 @@ userSchema.methods = {
 }
 userSchema.pre("save", function(next){
     try {
-        console.log('this.password', this.password);
         this.salt = uuidv4();
         this.password = this.encrytPassword(this.password);
         next();
